@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<!--
+  MOCKUP DE OUTREACH — Romano Smile, Dental Care
+  ================================================
+  Dirección de diseño elegida: A — Editorial de Lujo
+  (perfil: consultorio cosmético/estético con énfasis en veneers, alineadores
+  y All-on-X. Dr. Julio Rosado y Dra. Suset Romano son socios/colegas que
+  comparten consultorio — NO son familia.)
+
+  Hero elegido: (i) Editorial partido — titular grande a un lado,
+  imagen sangrada al otro, rating debajo.
+
+  Fotos reales incluidas (carpeta /images, provistas por el cliente):
+  - dr-rosado-dra-romano.jpg → hero
+  - equipo-romano-smile.jpg → sección "sobre los doctores" (imagen principal)
+  - dra-romano-trabajando.jpg → sección "sobre los doctores" (retrato flotante)
+  - antes-1 / despues-1, antes-2 / despues-2 → dos casos reales en el
+    slider antes/después (SECCIÓN FIRMA)
+  - logo-romano-smile.png → header y footer
+  - consulta-explicacion.webp → foto de stock genérica (sin marca), usada
+    solo para llenar el bloque "cómo es el proceso" que no tenía imagen propia
+
+  Secciones y orden:
+  1. Header fijo (con selector de idioma ES/EN funcional)
+  2. Hero editorial partido
+  3. Sobre los doctores (socios, bio asimétrica)
+  4. Servicios (grid asimétrico, cosmética destacada)
+  5. Antes / Después — 2 casos reales, sliders arrastrables (SECCIÓN FIRMA)
+  6. Journey numerado 01–04 (con imagen de apoyo)
+  7. ¿Sos candidato/a? (calificación honesta)
+  8. Reseñas de Google (2 reseñas reales verbatim, sin traducir)
+  9. FAQ honesto (acordeón)
+  10. Turnos (widget placeholder) + Ubicación/horarios + CTA final
+  + Footer + barra sticky mobile
+
+  Idioma: todo el copy vive en el diccionario I18N (script al final) y se
+  aplica vía atributos data-i18n / data-i18n-attr. Las reseñas de Google se
+  muestran verbatim (no se traducen) porque son contenido citado real del
+  cliente, no copy de la agencia. No se usó ningún dato inventado.
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Romano Smile, Dental Care — Miami, FL</title>
+<meta name="description" content="Odontología general, cosmética e implantes en Miami. Dr. Julio Rosado & Dra. Suset Romano. Veneers, alineadores, All-on-X. Hablamos español e inglés.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f3ec;
+    --surface:#ffffff;
+    --surface-2:#efe6d6;
+    --ink:#251f19;
+    --ink-soft:#3a3128;
+    --muted:#736457;
+    --primary:#251f19;
+    --accent:#a97c42;
+    --accent-deep:#7d5a2c;
+    --accent-soft:#f0e2c8;
+    --line:#e3d8c3;
+    --radius:14px;
+    --radius-lg:28px;
+    --shadow-sm:0 2px 10px rgba(37,31,25,.06);
+    --shadow-md:0 18px 44px -18px rgba(37,31,25,.28);
+    --shadow-lg:0 30px 70px -24px rgba(37,31,25,.34);
+    --maxw:1200px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.08;
+    letter-spacing:-.01em;
+    margin:0 0 .5em;
+    color:var(--ink);
+  }
+  h1 em, h2 em{font-style:italic;color:var(--accent-deep);font-weight:500}
+  p{margin:0 0 1em}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:96px 0}
+  @media (max-width:760px){ section{padding:64px 0} }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:.76rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin-bottom:18px;
+  }
+  .eyebrow::before{content:'';width:28px;height:1px;background:var(--accent-deep)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    padding:16px 30px;border-radius:100px;font-weight:600;font-size:.95rem;
+    text-decoration:none;border:1px solid transparent;cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    font-family:'Inter',sans-serif;
+  }
+  .btn-primary{background:var(--ink);color:var(--bg)}
+  .btn-primary:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn-outline:hover{background:var(--ink);color:var(--bg);transform:translateY(-2px)}
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-accent:hover{background:var(--accent-deep);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .btn-sm{padding:11px 20px;font-size:.86rem}
+  :focus-visible{outline:3px solid var(--accent-deep);outline-offset:3px}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  .reveal.d1{transition-delay:.1s}
+  .reveal.d2{transition-delay:.2s}
+  .reveal.d3{transition-delay:.3s}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    background:transparent;
+    transition:background .3s ease, box-shadow .3s ease, padding .3s ease;
+    padding:20px 0;
+  }
+  header.scrolled{background:rgba(247,243,236,.92);backdrop-filter:blur(10px);box-shadow:var(--shadow-sm);padding:10px 0}
+  header .container{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;text-decoration:none;color:var(--ink)}
+  .brand img{height:52px;width:auto;transition:height .3s ease}
+  header.scrolled .brand img{height:42px}
+  nav{display:flex;align-items:center;gap:30px}
+  nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}
+  nav ul a{text-decoration:none;font-size:.92rem;font-weight:500;color:var(--ink-soft);position:relative}
+  nav ul a::after{content:'';position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--accent-deep);transition:width .25s ease}
+  nav ul a:hover::after{width:100%}
+  .nav-actions{display:flex;align-items:center;gap:14px}
+  .nav-phone{display:flex;align-items:center;gap:8px;font-weight:600;font-size:.92rem;text-decoration:none;color:var(--ink)}
+  .nav-phone svg{width:17px;height:17px;color:var(--accent-deep)}
+  .lang-toggle{display:flex;border:1px solid var(--line);border-radius:100px;padding:3px;gap:2px}
+  .lang-btn{border:none;background:none;padding:6px 12px;border-radius:100px;font-size:.78rem;font-weight:700;cursor:pointer;color:var(--muted);letter-spacing:.03em}
+  .lang-btn.active{background:var(--ink);color:var(--bg)}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+  .hamburger span{width:24px;height:2px;background:var(--ink);transition:transform .25s ease, opacity .25s ease}
+  .mobile-menu{
+    position:fixed;inset:0;background:var(--bg);z-index:1100;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;
+    transform:translateY(-100%);transition:transform .35s ease;
+  }
+  .mobile-menu.open{transform:translateY(0)}
+  .mobile-menu a{font-family:'Fraunces',serif;font-size:1.4rem;text-decoration:none;color:var(--ink)}
+  .mobile-menu .btn{margin-top:8px}
+  .mobile-menu .lang-toggle{margin-top:6px}
+  .mobile-close{position:absolute;top:26px;right:24px;background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--ink)}
+  @media (max-width:1080px){
+    nav ul{display:none}
+    .nav-phone span{display:none}
+    .hamburger{display:flex}
+  }
+
+  /* ---------- hero (editorial partido) ---------- */
+  .hero{padding:150px 0 90px}
+  .hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+  .hero-eyebrow{margin-bottom:20px}
+  .hero h1{font-size:clamp(2.5rem,4.6vw,3.9rem)}
+  .hero .lede{font-size:1.14rem;color:var(--muted);max-width:480px}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin:32px 0 30px}
+  .hero-trust{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .stars{color:var(--accent);letter-spacing:2px;font-size:1rem}
+  .hero-trust-text{font-size:.92rem;color:var(--muted)}
+  .hero-trust-text b{color:var(--ink)}
+  .hero-visual{position:relative}
+  .hero-frame{
+    position:relative;border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;
+    box-shadow:var(--shadow-lg);background:var(--ink);
+  }
+  .hero-frame img{width:100%;height:100%;object-fit:cover;object-position:center 25%}
+  .hero-float{
+    position:absolute;bottom:-28px;left:-28px;background:var(--surface);
+    border-radius:var(--radius);box-shadow:var(--shadow-md);padding:18px 22px;
+    display:flex;align-items:center;gap:14px;max-width:250px;
+  }
+  .hero-float .ic{width:42px;height:42px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;flex:none;color:var(--accent-deep)}
+  .hero-float .ic svg{width:22px;height:22px}
+  .hero-float b{display:block;font-family:'Fraunces',serif;font-size:1.02rem}
+  .hero-float small{color:var(--muted);font-size:.78rem}
+  @media (max-width:920px){
+    .hero{padding:130px 0 60px}
+    .hero .container{grid-template-columns:1fr;gap:44px}
+    .hero-visual{order:-1;max-width:420px;margin:0 auto;width:100%}
+    .hero-float{left:16px;bottom:-22px}
+  }
+
+  /* ---------- section heads ---------- */
+  .section-head{max-width:640px;margin-bottom:56px}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem)}
+  .section-head p{color:var(--muted);font-size:1.05rem}
+
+  /* ---------- about doctors ---------- */
+  .about{background:var(--surface)}
+  .about .container{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+  .doctor-visual{position:relative}
+  .doctor-portrait{
+    border-radius:var(--radius-lg);aspect-ratio:3/4;overflow:hidden;position:relative;
+    box-shadow:var(--shadow-md);background:var(--ink);
+  }
+  .doctor-portrait img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
+  .doctor-portrait2{
+    position:absolute;bottom:-40px;right:-46px;width:52%;aspect-ratio:3/4;
+    border-radius:var(--radius-lg);overflow:hidden;border:6px solid var(--bg);
+    box-shadow:var(--shadow-md);background:var(--ink);
+  }
+  .doctor-portrait2 img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+  .credential-pills{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+  .pill{
+    padding:8px 16px;border-radius:100px;background:var(--surface-2);
+    font-size:.82rem;font-weight:600;color:var(--ink-soft);border:1px solid var(--line);
+  }
+  .about-signature{margin-top:22px;font-family:'Fraunces',serif;font-style:italic;color:var(--accent-deep);font-size:1.05rem}
+  @media (max-width:920px){
+    .about .container{grid-template-columns:1fr;gap:80px}
+    .doctor-portrait2{width:56%;right:0}
+  }
+
+  /* ---------- services ---------- */
+  .services{background:var(--bg)}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:22px;
+  }
+  .service-card{
+    grid-column:span 2;background:var(--surface);border:1px solid var(--line);
+    border-radius:var(--radius);padding:32px 26px;transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+  .service-card.feature{
+    grid-column:span 4;grid-row:span 2;background:linear-gradient(150deg,var(--ink),#3a2f22);
+    color:var(--bg);display:flex;flex-direction:column;justify-content:flex-end;padding:38px;
+    position:relative;overflow:hidden;
+  }
+  .service-card.feature::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 10%, rgba(169,124,66,.5), transparent 55%);
+  }
+  .service-card.feature .icon{color:var(--accent)}
+  .service-card.feature h3{color:var(--bg)}
+  .service-card.feature p{color:#d9cdb8}
+  .service-card .icon{width:40px;height:40px;color:var(--accent-deep);margin-bottom:16px}
+  .service-card .icon svg{width:100%;height:100%}
+  .service-card h3{font-size:1.18rem;margin-bottom:6px}
+  .service-card p{color:var(--muted);font-size:.92rem;margin:0}
+  @media (max-width:920px){
+    .service-grid{grid-template-columns:repeat(2,1fr)}
+    .service-card{grid-column:span 1}
+    .service-card.feature{grid-column:span 2;grid-row:auto}
+  }
+
+  /* ---------- before/after signature ---------- */
+  .transform-section{background:var(--surface)}
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:1000px;margin:0 auto}
+  .ba-case{display:flex;flex-direction:column}
+  .ba-wrap{
+    position:relative;aspect-ratio:4/3;border-radius:var(--radius-lg);
+    overflow:hidden;box-shadow:var(--shadow-lg);cursor:ew-resize;user-select:none;background:var(--ink);
+  }
+  .ba-before,.ba-after{position:absolute;inset:0;display:flex;align-items:flex-end}
+  .ba-before img,.ba-after img{width:100%;height:100%;object-fit:cover;display:block}
+  .ba-after{clip-path:inset(0 0 0 50%)}
+  .ba-label{position:absolute;bottom:0;left:0;padding:14px 18px;font-family:'Fraunces',serif;font-size:.95rem;color:#fff;letter-spacing:.02em;background:linear-gradient(to top, rgba(0,0,0,.6), transparent);width:100%}
+  .ba-after .ba-label{left:auto;right:0;text-align:right}
+  .ba-handle{
+    position:absolute;top:0;bottom:0;left:50%;width:3px;background:#fff;
+    box-shadow:0 0 0 1px rgba(0,0,0,.1);transform:translateX(-1.5px);
+  }
+  .ba-handle::after{
+    content:'⇔';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:44px;height:44px;background:#fff;border-radius:50%;display:grid;place-items:center;
+    box-shadow:var(--shadow-md);font-size:1rem;color:var(--ink);
+  }
+  .ba-range{
+    width:100%;margin:16px 0 0;display:block;appearance:none;height:4px;
+    background:var(--line);border-radius:10px;outline:none;
+  }
+  .ba-range::-webkit-slider-thumb{
+    appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent-deep);
+    cursor:pointer;box-shadow:var(--shadow-sm);
+  }
+  .ba-note{text-align:center;color:var(--muted);font-size:.86rem;margin-top:28px}
+  @media (max-width:760px){ .ba-grid{grid-template-columns:1fr} }
+
+  /* ---------- journey ---------- */
+  .journey{background:var(--bg)}
+  .journey .container{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+  .journey-img{border-radius:var(--radius-lg);overflow:hidden;aspect-ratio:4/5;box-shadow:var(--shadow-md)}
+  .journey-img img{width:100%;height:100%;object-fit:cover}
+  .journey-steps{display:flex;flex-direction:column;gap:34px}
+  .journey-step{display:flex;gap:22px;align-items:flex-start}
+  .journey-step .num{
+    font-family:'Fraunces',serif;font-size:2.4rem;color:var(--accent-soft);
+    -webkit-text-stroke:1.2px var(--accent-deep);font-weight:500;line-height:1;flex:none;width:60px;
+  }
+  .journey-step h3{font-size:1.12rem;margin-bottom:6px}
+  .journey-step p{color:var(--muted);font-size:.92rem;margin:0}
+  @media (max-width:920px){
+    .journey .container{grid-template-columns:1fr;gap:40px}
+    .journey-img{max-width:420px;margin:0 auto;width:100%}
+  }
+
+  /* ---------- candidate qualification ---------- */
+  .candidate{background:var(--ink);color:var(--bg)}
+  .candidate .section-head p{color:#c9bda9}
+  .candidate .eyebrow{color:var(--accent)}
+  .candidate .eyebrow::before{background:var(--accent)}
+  .cand-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(247,243,236,.14);border-radius:var(--radius-lg);overflow:hidden}
+  .cand-col{background:#2c251d;padding:40px 38px}
+  .cand-col.yes{background:#332a1f}
+  .cand-col h3{color:var(--bg);font-size:1.2rem;display:flex;align-items:center;gap:10px}
+  .cand-col h3 svg{width:24px;height:24px;flex:none}
+  .cand-col ul{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+  .cand-col li{display:flex;gap:12px;font-size:.95rem;color:#e6ddcd;align-items:flex-start}
+  .cand-col li svg{width:20px;height:20px;flex:none;margin-top:2px;color:var(--accent)}
+  @media (max-width:760px){ .cand-grid{grid-template-columns:1fr} }
+
+  /* ---------- reviews ---------- */
+  .reviews{background:var(--surface)}
+  .review-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .review-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:32px}
+  .review-stars{color:var(--accent);letter-spacing:2px;margin-bottom:14px;font-size:1rem}
+  .review-quote{color:var(--ink-soft);font-size:.96rem;margin-bottom:20px}
+  .review-author{display:flex;align-items:center;gap:12px}
+  .review-avatar{
+    width:44px;height:44px;border-radius:50%;background:var(--accent-soft);color:var(--accent-deep);
+    display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;flex:none;
+  }
+  .review-author b{display:block;font-size:.92rem}
+  .review-author span{color:var(--muted);font-size:.8rem}
+  @media (max-width:760px){ .review-grid{grid-template-columns:1fr} }
+
+  /* ---------- FAQ ---------- */
+  .faq{background:var(--bg)}
+  .faq-list{max-width:760px}
+  .faq-item{border-bottom:1px solid var(--line)}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;padding:22px 0;
+    display:flex;justify-content:space-between;align-items:center;cursor:pointer;
+    font-family:'Fraunces',serif;font-size:1.08rem;color:var(--ink);gap:20px;
+  }
+  .faq-q .plus{flex:none;width:22px;height:22px;position:relative}
+  .faq-q .plus::before,.faq-q .plus::after{content:'';position:absolute;background:var(--accent-deep);top:50%;left:50%;transform:translate(-50%,-50%)}
+  .faq-q .plus::before{width:14px;height:2px}
+  .faq-q .plus::after{width:2px;height:14px;transition:transform .25s ease}
+  .faq-item.open .faq-q .plus::after{transform:translate(-50%,-50%) rotate(90deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-a p{color:var(--muted);padding-bottom:22px;max-width:640px}
+
+  /* ---------- booking + location + cta final ---------- */
+  .booking{background:var(--surface)}
+  .booking .container{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .book-form{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius-lg);padding:38px;box-shadow:var(--shadow-sm)}
+  .book-form .field{margin-bottom:18px;display:flex;flex-direction:column;gap:7px}
+  .book-form label{font-size:.84rem;font-weight:600;color:var(--ink-soft)}
+  .book-form input,.book-form select{
+    padding:13px 15px;border:1px solid var(--line);border-radius:10px;font-family:inherit;
+    font-size:.95rem;background:var(--surface);color:var(--ink);
+  }
+  .book-form input:focus,.book-form select:focus{border-color:var(--accent-deep)}
+  .book-confirm{
+    display:none;background:var(--accent-soft);border:1px solid var(--accent);color:var(--accent-deep);
+    padding:16px 18px;border-radius:10px;font-size:.92rem;margin-top:16px;
+  }
+  .book-confirm.show{display:block}
+  .location-block{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+  .info-row{display:flex;gap:16px;align-items:flex-start}
+  .info-row .ic{width:38px;height:38px;border-radius:50%;background:var(--surface-2);display:grid;place-items:center;flex:none;color:var(--accent-deep)}
+  .info-row .ic svg{width:19px;height:19px}
+  .info-row h4{margin:0 0 4px;font-size:1rem;font-family:'Inter',sans-serif;font-weight:700}
+  .info-row p{margin:0;color:var(--muted);font-size:.92rem}
+  @media (max-width:920px){ .booking .container{grid-template-columns:1fr} }
+
+  .cta-final{
+    background:linear-gradient(150deg,#2c251d,#1c1712);color:var(--bg);text-align:center;
+  }
+  .cta-final h2{color:var(--bg)}
+  .cta-final p{color:#cabfa9;max-width:520px;margin-left:auto;margin-right:auto}
+  .cta-final .hero-actions{justify-content:center}
+
+  /* ---------- footer ---------- */
+  footer{background:#1c1712;color:#cabfa9;padding:60px 0 110px}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;margin-bottom:40px;align-items:start}
+  .footer-grid h4{color:var(--bg);font-family:'Inter',sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+  .footer-brand img{height:52px;margin-bottom:14px}
+  .footer-grid p, .footer-grid a{font-size:.9rem;color:#b3a68f;text-decoration:none;display:block;margin-bottom:8px}
+  .footer-grid a:hover{color:var(--accent)}
+  .social-row{display:flex;gap:12px;margin-top:6px}
+  .social-row a{
+    width:36px;height:36px;border-radius:50%;background:rgba(247,243,236,.08);
+    display:grid;place-items:center;color:#e6ddcd;
+  }
+  .social-row a:hover{background:var(--accent);color:#1c1712}
+  .social-row svg{width:17px;height:17px}
+  .footer-bottom{border-top:1px solid rgba(247,243,236,.12);padding-top:24px;font-size:.82rem;color:#8a7d67;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  @media (max-width:760px){ .footer-grid{grid-template-columns:1fr} }
+
+  /* ---------- sticky mobile bar ---------- */
+  .mobile-cta{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:900;
+    background:var(--surface);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(0,0,0,.1);
+    padding:12px 16px;gap:12px;
+  }
+  @media (max-width:760px){ .mobile-cta{display:flex} }
+  .mobile-cta a{flex:1;text-align:center}
+
+  ::selection{background:var(--accent-soft);color:var(--accent-deep)}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <div class="container">
+    <a href="#top" class="brand">
+      <img src="images/logo-romano-smile.png" alt="Romano Smile, Dental Care">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="#doctores" data-i18n="navDoctors">Nuestros Doctores</a></li>
+        <li><a href="#servicios" data-i18n="navServices">Servicios</a></li>
+        <li><a href="#transformaciones" data-i18n="navResults">Transformaciones</a></li>
+        <li><a href="#resenas" data-i18n="navReviews">Reseñas</a></li>
+        <li><a href="#ubicacion" data-i18n="navLocation">Ubicación</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a class="nav-phone" href="tel:+13056771612">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>(305) 677-1612</span>
+        </a>
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button class="lang-btn active" data-lang="es">ES</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="#turnos" class="btn btn-primary btn-sm" data-i18n="navBook">Agendar Consulta</a>
+        <button class="hamburger" id="hamburgerBtn" data-i18n-attr="aria-label:ariaOpenMenu" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileCloseBtn" data-i18n-attr="aria-label:ariaCloseMenu" aria-label="Cerrar menú">&times;</button>
+  <a href="#doctores" data-i18n="navDoctors">Nuestros Doctores</a>
+  <a href="#servicios" data-i18n="navServices">Servicios</a>
+  <a href="#transformaciones" data-i18n="navResults">Transformaciones</a>
+  <a href="#resenas" data-i18n="navReviews">Reseñas</a>
+  <a href="#ubicacion" data-i18n="navLocation">Ubicación</a>
+  <a href="#turnos" class="btn btn-accent" data-i18n="navBook">Agendar Consulta</a>
+  <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+    <button class="lang-btn active" data-lang="es">ES</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+  </div>
+</div>
+
+<div id="top"></div>
+
+<!-- ============ HERO — editorial partido ============ -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-copy reveal in">
+      <p class="eyebrow hero-eyebrow">Dr. Julio Rosado &amp; Dra. Suset Romano</p>
+      <h1 data-i18n="heroTitle">Dos dentistas, <em>un mismo compromiso</em> con tu sonrisa.</h1>
+      <p class="lede" data-i18n="heroLede">Odontología general, cosmética e implantes en Miami — con la precisión de un equipo especializado en veneers, alineadores transparentes y rehabilitación completa con All-on-X.</p>
+      <div class="hero-actions">
+        <a href="#turnos" class="btn btn-primary" data-i18n="heroBtnBook">Agendar mi consulta</a>
+        <a href="tel:+13056771612" class="btn btn-outline" data-i18n="heroBtnCall">Llamar (305) 677-1612</a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span class="hero-trust-text" data-i18n="heroTrust"><b>4.9/5</b> en Google · <b>285</b> reseñas · Se habla Español &amp; English</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal in d1">
+      <div class="hero-frame">
+        <img src="images/dr-rosado-dra-romano.jpg" data-i18n-attr="alt:altHero" alt="Dr. Julio Rosado y Dra. Suset Romano en el consultorio Romano Smile, Dental Care">
+      </div>
+      <div class="hero-float">
+        <div class="ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <div>
+          <b data-i18n="heroFloatTitle">Atención cercana y profesional</b>
+          <small data-i18n="heroFloatSub">Atendemos a pacientes de todas las edades</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE LOS DOCTORES ============ -->
+<section id="doctores" class="about">
+  <div class="container">
+    <div class="doctor-visual reveal">
+      <div class="doctor-portrait">
+        <img src="images/equipo-romano-smile.jpg" data-i18n-attr="alt:altAbout1" alt="Equipo de Romano Smile, Dental Care">
+      </div>
+      <div class="doctor-portrait2">
+        <img src="images/dra-romano-trabajando.jpg" data-i18n-attr="alt:altAbout2" alt="Dra. Suset Romano atendiendo a un paciente">
+      </div>
+    </div>
+    <div class="about-copy reveal d1">
+      <p class="eyebrow" data-i18n="aboutEyebrow">Conocé a tu equipo dental</p>
+      <h2 data-i18n="aboutTitle">Dos dentistas, un mismo estándar de cuidado.</h2>
+      <p data-i18n="aboutP1">El Dr. Julio Rosado y la Dra. Suset Romano comparten consultorio y una misma filosofía: que cada paciente entienda su tratamiento antes de empezarlo. Juntos cubren desde la odontología general hasta la cosmética más exigente — veneers, alineadores transparentes y rehabilitación completa con All-on-X.</p>
+      <p data-i18n="aboutP2">Un mismo criterio, aplicado por dos profesionales: tratamientos honestos, explicados en tu idioma — español o inglés — sin apuros.</p>
+      <div class="credential-pills">
+        <span class="pill" data-i18n="pillGeneral">Odontología general</span>
+        <span class="pill" data-i18n="pillCosmetic">Cosmética &amp; Smile Makeover</span>
+        <span class="pill" data-i18n="pillImplants">Implantes &amp; All-on-X</span>
+        <span class="pill" data-i18n="pillAligners">Alineadores transparentes</span>
+        <span class="pill" data-i18n="pillEmergency">Atención de urgencias</span>
+      </div>
+      <p class="about-signature" data-i18n="aboutQuote">"Que cada paciente entienda su tratamiento — no solo lo reciba." — Dr. Rosado &amp; Dra. Romano</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section id="servicios" class="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="servicesEyebrow">Lo que hacemos</p>
+      <h2 data-i18n="servicesTitle">Un consultorio, todas las etapas de tu sonrisa</h2>
+      <p data-i18n="servicesLede">Desde una limpieza de rutina hasta una rehabilitación completa — sin derivarte a media docena de especialistas distintos.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card feature reveal">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c-3.5 0-6 2.8-6 6.5 0 3 1.2 5.4 2.2 7.6.7 1.6 1.2 2.9 3.8 2.9s3.1-1.3 3.8-2.9c1-2.2 2.2-4.6 2.2-7.6C18 5.8 15.5 3 12 3z"/><path d="M9.5 8.2c.7-1.1 1.8-1.7 2.5-1.7s1.8.6 2.5 1.7"/></svg>
+        </div>
+        <h3 data-i18n="serviceFeatureTitle">Smile Makeover &amp; Veneers</h3>
+        <p data-i18n="serviceFeatureP">El tratamiento ancla de la Dra. Romano: diseño de sonrisa personalizado con veneers de porcelana, pensado para verse natural — no "de catálogo".</p>
+      </div>
+      <div class="service-card reveal d1">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3 data-i18n="serviceGeneralTitle">Odontología General</h3>
+        <p data-i18n="serviceGeneralP">Chequeos, limpiezas y prevención para toda la familia.</p>
+      </div>
+      <div class="service-card reveal d2">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M12 8v8M9 12h6"/></svg></div>
+        <h3 data-i18n="serviceImplantsTitle">Implantes &amp; All-on-X</h3>
+        <p data-i18n="serviceImplantsP">Rehabilitación de arcada completa con resultados fijos y de larga duración.</p>
+      </div>
+      <div class="service-card reveal d3">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1116 0 8 8 0 01-16 0z"/><path d="M9 9c1-1.5 5-1.5 6 0"/></svg></div>
+        <h3 data-i18n="serviceAlignersTitle">Alineadores Transparentes</h3>
+        <p data-i18n="serviceAlignersP">Enderezá tu sonrisa sin brackets, a tu propio ritmo.</p>
+      </div>
+      <div class="service-card reveal d1">
+        <div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg></div>
+        <h3 data-i18n="serviceEmergencyTitle">Emergencias Dentales</h3>
+        <p data-i18n="serviceEmergencyP">Dolor agudo o urgencia dental — te acomodamos lo antes posible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANTES / DESPUÉS — sección firma (2 casos reales) ============ -->
+<section id="transformaciones" class="transform-section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <p class="eyebrow" data-i18n="transformEyebrow">Resultados reales</p>
+      <h2 data-i18n="transformTitle">Arrastrá para ver la <em>transformación</em></h2>
+      <p data-i18n="transformLede">Así de honestos somos: mostramos el proceso completo, no solo el resultado final.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-case reveal d1">
+        <div class="ba-wrap" data-ba="1">
+          <div class="ba-before"><img src="images/antes-1.jpg" alt="Antes del tratamiento — caso 1"><span class="ba-label" data-i18n="baBefore">Antes</span></div>
+          <div class="ba-after"><img src="images/despues-1.jpg" alt="Después del tratamiento — caso 1"><span class="ba-label" data-i18n="baAfter">Después</span></div>
+          <div class="ba-handle"></div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range" data-i18n-attr="aria-label:ariaBaSlide" aria-label="Deslizar para comparar antes y después">
+      </div>
+      <div class="ba-case reveal d2">
+        <div class="ba-wrap" data-ba="2">
+          <div class="ba-before"><img src="images/antes-2.jpg" alt="Antes del tratamiento — caso 2"><span class="ba-label" data-i18n="baBefore">Antes</span></div>
+          <div class="ba-after"><img src="images/despues-2.jpg" alt="Después del tratamiento — caso 2"><span class="ba-label" data-i18n="baAfter">Después</span></div>
+          <div class="ba-handle"></div>
+        </div>
+        <input type="range" min="0" max="100" value="50" class="ba-range" data-i18n-attr="aria-label:ariaBaSlide" aria-label="Deslizar para comparar antes y después">
+      </div>
+    </div>
+    <p class="ba-note" data-i18n="baNote">Casos reales de pacientes de la práctica — fotos utilizadas con fines ilustrativos.</p>
+  </div>
+</section>
+
+<!-- ============ JOURNEY ============ -->
+<section class="journey">
+  <div class="container">
+    <div class="journey-img reveal">
+      <img src="images/consulta-explicacion.webp" data-i18n-attr="alt:altJourney" alt="Dentista explicando un tratamiento a su paciente">
+    </div>
+    <div class="reveal d1">
+      <p class="eyebrow" data-i18n="journeyEyebrow">Cómo es el proceso</p>
+      <h2 data-i18n="journeyTitle">De la primera visita al resultado</h2>
+      <div class="journey-steps" style="margin-top:34px">
+        <div class="journey-step">
+          <span class="num">01</span>
+          <div><h3 data-i18n="step1Title">Consulta &amp; diagnóstico</h3><p data-i18n="step1P">Escuchamos qué te gustaría cambiar y evaluamos tu salud dental de base.</p></div>
+        </div>
+        <div class="journey-step">
+          <span class="num">02</span>
+          <div><h3 data-i18n="step2Title">Plan personalizado</h3><p data-i18n="step2P">Diseñamos un plan claro — con opciones y tiempos, sin letra chica.</p></div>
+        </div>
+        <div class="journey-step">
+          <span class="num">03</span>
+          <div><h3 data-i18n="step3Title">Tratamiento</h3><p data-i18n="step3P">Veneers, alineadores, implantes o All-on-X — a tu ritmo y con seguimiento cercano.</p></div>
+        </div>
+        <div class="journey-step">
+          <span class="num">04</span>
+          <div><h3 data-i18n="step4Title">Resultado &amp; cuidado</h3><p data-i18n="step4P">Controles de seguimiento para que tu sonrisa dure — no solo se vea bien el primer día.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ¿SOS CANDIDATO/A? ============ -->
+<section class="candidate">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="candEyebrow">Antes de agendar</p>
+      <h2 data-i18n="candTitle">¿Es este tratamiento para vos?</h2>
+      <p data-i18n="candLede">Preferimos que lo sepas antes de la consulta — sin sorpresas.</p>
+    </div>
+    <div class="cand-grid reveal d1">
+      <div class="cand-col yes">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--accent)"><path d="M20 6L9 17l-5-5"/></svg>
+          <span data-i18n="candYesTitle">Podés ser candidato/a si...</span>
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="candYes1">Tenés manchas o desgaste que el blanqueamiento ya no resuelve.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="candYes2">Buscás corregir dientes chuecos o separados sin cirugía mayor.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="candYes3">Te faltan piezas y querés una solución fija y estable.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><span data-i18n="candYes4">Querés resultados en un número acotado de visitas.</span></li>
+        </ul>
+      </div>
+      <div class="cand-col">
+        <h3>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16h.01M10.3 3.9L2.5 17a2 2 0 001.7 3h15.6a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+          <span data-i18n="candNoTitle">Charlemos otras opciones si...</span>
+        </h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16h.01"/></svg><span data-i18n="candNo1">Tenés enfermedad de encías activa sin tratar todavía.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16h.01"/></svg><span data-i18n="candNo2">El movimiento dental es severo y necesita otro abordaje primero.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16h.01"/></svg><span data-i18n="candNo3">Buscás solo la opción más económica, sin priorizar estética.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v5M12 16h.01"/></svg><span data-i18n="candNo4">No podés venir a los controles de seguimiento necesarios.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEÑAS DE GOOGLE ============ -->
+<section id="resenas" class="reviews">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="reviewsEyebrow">Lo que dicen nuestros pacientes</p>
+      <h2 data-i18n="reviewsTitle">Reseñas reales de Google</h2>
+      <p><span class="stars" aria-hidden="true">★★★★★</span> <span data-i18n="reviewsSub"><b>4.9/5</b> · 285 reseñas en Google</span></p>
+    </div>
+    <!-- Reseñas verbatim — no se traducen, son cita textual real del paciente -->
+    <div class="review-grid reveal d1">
+      <div class="review-card">
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p class="review-quote">"Tuve una experiencia excelente en Romano Smile. Desde el momento en que llegué, todo el equipo me hizo sentir cómodo y bien atendido. La Dra. Romano y su personal fueron muy profesionales, amables y atentos a cada detalle durante todo el proceso.<br><br>Me impresionó la calidad del servicio, las instalaciones modernas y el tiempo que dedicaron a explicarme mis opciones de tratamiento. Si estás buscando un dentista en Kendall o Miami para implantes dentales, limpieza dental, odontología estética o cuidado dental general, definitivamente recomiendo esta clínica.<br><br>La atención fue excepcional, el tratamiento fue prácticamente sin dolor y los resultados superaron mis expectativas. Se nota que realmente se preocupan por la salud y la satisfacción de sus pacientes.<br><br>Sin duda volveré para mis futuros tratamientos dentales y recomendaré Romano Smile a familiares y amigos. ¡Gracias por el excelente servicio y por devolverme la confianza en mi sonrisa!"</p>
+        <div class="review-author">
+          <div class="review-avatar">D</div>
+          <div><b>Daniel Alejandro Bermúdez Rodríguez</b><span>9 opiniones · Google</span></div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p class="review-quote">"Dr. Suset Romano provides outstanding care, combining top level professionalism with a warm, family-like approach. Her clinic stands out for its excellent conditions, modern technology, and comfortable environment that builds complete trust. Highly recommend!<br><br>La Dra. Suset Romano ofrece una atención excepcional, combinando un alto nivel de profesionalismo con un trato cálido y familiar. Su práctica se destaca por sus excelentes condiciones, tecnología moderna y un ambiente cómodo que genera total confianza. ¡Altamente recomendada!"</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div><b>Alfonso Cardoso</b><span>Local Guide · 15 opiniones · Google</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="faq">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow" data-i18n="faqEyebrow">Preguntas honestas</p>
+      <h2 data-i18n="faqTitle">Lo que todo paciente se pregunta</h2>
+    </div>
+    <div class="faq-list reveal d1">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faqQ1">¿Duele el proceso de veneers o alineadores?</span><span class="plus"></span></button>
+        <div class="faq-a"><p data-i18n="faqA1">La mayoría de los pacientes sienten sensibilidad leve los primeros días, no dolor. Usamos anestesia local cuando el procedimiento lo requiere y te explicamos cada paso antes de empezar.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faqQ2">¿Se van a ver naturales o "de mentira"?</span><span class="plus"></span></button>
+        <div class="faq-a"><p data-i18n="faqA2">Diseñamos cada caso según la forma de tu cara y tus dientes reales — la meta es que se note que sonreís más, no que "te hiciste algo".</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faqQ3">¿Cuánto cuesta un smile makeover?</span><span class="plus"></span></button>
+        <div class="faq-a"><p data-i18n="faqA3">Depende del número de piezas y del tratamiento elegido — por eso el presupuesto se arma después de la consulta, no antes. Consultamos opciones de financiamiento en la primera cita.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faqQ4">¿Cuánto dura el tratamiento?</span><span class="plus"></span></button>
+        <div class="faq-a"><p data-i18n="faqA4">Varía según el caso: algunos tratamientos cosméticos se completan en pocas visitas, mientras que alineadores o All-on-X llevan un seguimiento más largo. Te damos un cronograma claro en el plan personalizado.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faqQ5">¿Atienden emergencias?</span><span class="plus"></span></button>
+        <div class="faq-a"><p data-i18n="faqA5">Sí. Si tenés dolor agudo o un golpe reciente, llamanos al (305) 677-1612 y te acomodamos con prioridad.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="faqQ6">¿Hablan inglés?</span><span class="plus"></span></button>
+        <div class="faq-a"><p data-i18n="faqA6">Sí — todo el equipo atiende en español e inglés, así que podés elegir el idioma con el que te sientas más cómodo/a.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TURNOS + UBICACIÓN ============ -->
+<section id="turnos" class="booking">
+  <div class="container">
+    <div>
+      <p class="eyebrow" data-i18n="bookEyebrow">Reservá tu lugar</p>
+      <h2 data-i18n="bookTitle">Agendá tu consulta</h2>
+      <p style="color:var(--muted);margin-bottom:28px" data-i18n="bookLede">Completá el formulario y te confirmamos por teléfono o email.</p>
+      <!-- PRODUCCIÓN: reemplazar este formulario por el embed real de NexHealth, LocalMed o Calendly según el sistema que use el consultorio -->
+      <form class="book-form" id="bookingForm" novalidate>
+        <div class="field">
+          <label for="bf-name" data-i18n="labelName">Nombre completo</label>
+          <input type="text" id="bf-name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="bf-phone" data-i18n="labelPhone">Teléfono</label>
+          <input type="tel" id="bf-phone" name="phone" required autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="bf-reason" data-i18n="labelReason">Motivo de la consulta</label>
+          <select id="bf-reason" name="reason" required>
+            <option value="" data-i18n="optionSelect">Seleccioná una opción</option>
+            <option data-i18n="option1">Smile Makeover / Veneers</option>
+            <option data-i18n="option2">Alineadores transparentes</option>
+            <option data-i18n="option3">Implantes / All-on-X</option>
+            <option data-i18n="option4">Chequeo general / limpieza</option>
+            <option data-i18n="option5">Emergencia dental</option>
+            <option data-i18n="option6">Otro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bf-date" data-i18n="labelDate">Fecha preferida</label>
+          <input type="date" id="bf-date" name="date" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%" data-i18n="btnSubmit">Solicitar turno</button>
+        <div class="book-confirm" id="bookConfirm" data-i18n="confirmMsg">¡Gracias! Recibimos tu solicitud — te contactamos al número indicado para confirmar el turno.</div>
+      </form>
+    </div>
+    <div class="location-block reveal">
+      <p class="eyebrow" id="ubicacion" data-i18n="locationEyebrow">Encontranos</p>
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><h4 data-i18n="locAddressTitle">Dirección</h4><p>8763 SW 24th St, Miami, FL 33165</p></div>
+      </div>
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 011.12 4.18 2 2 0 013.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+        <div><h4 data-i18n="locPhoneTitle">Teléfono</h4><p><a href="tel:+13056771612" style="color:inherit;text-decoration:none">(305) 677-1612</a></p></div>
+      </div>
+      <div class="info-row">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><h4 data-i18n="locHoursTitle">Horarios</h4><p data-i18n="locHoursP">Llamanos o escribinos para conocer la disponibilidad actual de turnos.</p></div>
+      </div>
+      <a class="btn btn-outline btn-sm" href="https://www.google.com/maps/search/?api=1&query=8763+SW+24th+St,+Miami,+FL+33165" target="_blank" rel="noopener" data-i18n="btnMaps">Ver en Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-final">
+  <div class="container">
+    <p class="eyebrow" style="color:var(--accent)" data-i18n="ctaEyebrow">¿Listo/a para el próximo paso?</p>
+    <h2 data-i18n="ctaTitle">Tu sonrisa no tiene por qué esperar más.</h2>
+    <p data-i18n="ctaLede">Escribinos o llamá directamente — el Dr. Rosado y la Dra. Romano te responden en tu idioma.</p>
+    <div class="hero-actions">
+      <a href="tel:+13056771612" class="btn btn-accent" data-i18n="heroBtnCall">Llamar (305) 677-1612</a>
+      <a href="#turnos" class="btn btn-outline" style="border-color:#f7f3ec;color:#f7f3ec" data-i18n="ctaBtnBook">Agendar consulta</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="images/logo-romano-smile.png" alt="Romano Smile, Dental Care"></div>
+        <p>8763 SW 24th St, Miami, FL 33165</p>
+        <p><a href="tel:+13056771612">(305) 677-1612</a></p>
+        <p><a href="mailto:rosadodental@yahoo.com">rosadodental@yahoo.com</a></p>
+        <div class="social-row">
+          <a href="https://instagram.com/dr.juliorosado" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://facebook.com/cosmeticdentistmiamiflorida" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 data-i18n="footerNavTitle">Navegación</h4>
+        <a href="#doctores" data-i18n="navDoctors">Nuestros Doctores</a>
+        <a href="#servicios" data-i18n="navServices">Servicios</a>
+        <a href="#transformaciones" data-i18n="navResults">Transformaciones</a>
+        <a href="#resenas" data-i18n="navReviews">Reseñas</a>
+      </div>
+      <div>
+        <h4 data-i18n="footerServicesTitle">Servicios</h4>
+        <a href="#servicios" data-i18n="serviceFeatureTitle">Smile Makeover &amp; Veneers</a>
+        <a href="#servicios" data-i18n="serviceImplantsTitle">Implantes &amp; All-on-X</a>
+        <a href="#servicios" data-i18n="serviceAlignersTitle">Alineadores Transparentes</a>
+        <a href="#servicios" data-i18n="serviceEmergencyTitle">Emergencias Dentales</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Romano Smile, Dental Care. <span data-i18n="footerRights">Todos los derechos reservados.</span></span>
+      <span data-i18n="footerNote">Sitio de demostración — diseño personalizado</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ STICKY MOBILE CTA ============ -->
+<div class="mobile-cta">
+  <a href="tel:+13056771612" class="btn btn-outline btn-sm" data-i18n="mobileCtaCall">Llamar</a>
+  <a href="#turnos" class="btn btn-primary btn-sm" data-i18n="mobileCtaBook">Agendar</a>
+</div>
+
+<script>
+(function(){
+  var I18N = {
+    es:{
+      navDoctors:"Nuestros Doctores", navServices:"Servicios", navResults:"Transformaciones",
+      navReviews:"Reseñas", navLocation:"Ubicación", navBook:"Agendar Consulta",
+      ariaOpenMenu:"Abrir menú", ariaCloseMenu:"Cerrar menú",
+      heroTitle:'Dos dentistas, <em>un mismo compromiso</em> con tu sonrisa.',
+      heroLede:"Odontología general, cosmética e implantes en Miami — con la precisión de un equipo especializado en veneers, alineadores transparentes y rehabilitación completa con All-on-X.",
+      heroBtnBook:"Agendar mi consulta", heroBtnCall:"Llamar (305) 677-1612",
+      heroTrust:'<b>4.9/5</b> en Google · <b>285</b> reseñas · Se habla Español &amp; English',
+      heroFloatTitle:"Atención cercana y profesional", heroFloatSub:"Atendemos a pacientes de todas las edades",
+      altHero:"Dr. Julio Rosado y Dra. Suset Romano en el consultorio Romano Smile, Dental Care",
+      altAbout1:"Equipo de Romano Smile, Dental Care",
+      altAbout2:"Dra. Suset Romano atendiendo a un paciente",
+      altJourney:"Dentista explicando un tratamiento a su paciente",
+      aboutEyebrow:"Conocé a tu equipo dental",
+      aboutTitle:"Dos dentistas, un mismo estándar de cuidado.",
+      aboutP1:"El Dr. Julio Rosado y la Dra. Suset Romano comparten consultorio y una misma filosofía: que cada paciente entienda su tratamiento antes de empezarlo. Juntos cubren desde la odontología general hasta la cosmética más exigente — veneers, alineadores transparentes y rehabilitación completa con All-on-X.",
+      aboutP2:"Un mismo criterio, aplicado por dos profesionales: tratamientos honestos, explicados en tu idioma — español o inglés — sin apuros.",
+      pillGeneral:"Odontología general", pillCosmetic:"Cosmética &amp; Smile Makeover",
+      pillImplants:"Implantes &amp; All-on-X", pillAligners:"Alineadores transparentes",
+      pillEmergency:"Atención de urgencias",
+      aboutQuote:'"Que cada paciente entienda su tratamiento — no solo lo reciba." — Dr. Rosado &amp; Dra. Romano',
+      servicesEyebrow:"Lo que hacemos", servicesTitle:"Un consultorio, todas las etapas de tu sonrisa",
+      servicesLede:"Desde una limpieza de rutina hasta una rehabilitación completa — sin derivarte a media docena de especialistas distintos.",
+      serviceFeatureTitle:"Smile Makeover &amp; Veneers",
+      serviceFeatureP:'El tratamiento ancla de la Dra. Romano: diseño de sonrisa personalizado con veneers de porcelana, pensado para verse natural — no "de catálogo".',
+      serviceGeneralTitle:"Odontología General", serviceGeneralP:"Chequeos, limpiezas y prevención para toda la familia.",
+      serviceImplantsTitle:"Implantes &amp; All-on-X", serviceImplantsP:"Rehabilitación de arcada completa con resultados fijos y de larga duración.",
+      serviceAlignersTitle:"Alineadores Transparentes", serviceAlignersP:"Enderezá tu sonrisa sin brackets, a tu propio ritmo.",
+      serviceEmergencyTitle:"Emergencias Dentales", serviceEmergencyP:"Dolor agudo o urgencia dental — te acomodamos lo antes posible.",
+      transformEyebrow:"Resultados reales", transformTitle:"Arrastrá para ver la <em>transformación</em>",
+      transformLede:"Así de honestos somos: mostramos el proceso completo, no solo el resultado final.",
+      baBefore:"Antes", baAfter:"Después",
+      baNote:"Casos reales de pacientes de la práctica — fotos utilizadas con fines ilustrativos.",
+      ariaBaSlide:"Deslizar para comparar antes y después",
+      journeyEyebrow:"Cómo es el proceso", journeyTitle:"De la primera visita al resultado",
+      step1Title:"Consulta &amp; diagnóstico", step1P:"Escuchamos qué te gustaría cambiar y evaluamos tu salud dental de base.",
+      step2Title:"Plan personalizado", step2P:"Diseñamos un plan claro — con opciones y tiempos, sin letra chica.",
+      step3Title:"Tratamiento", step3P:"Veneers, alineadores, implantes o All-on-X — a tu ritmo y con seguimiento cercano.",
+      step4Title:"Resultado &amp; cuidado", step4P:"Controles de seguimiento para que tu sonrisa dure — no solo se vea bien el primer día.",
+      candEyebrow:"Antes de agendar", candTitle:"¿Es este tratamiento para vos?",
+      candLede:"Preferimos que lo sepas antes de la consulta — sin sorpresas.",
+      candYesTitle:"Podés ser candidato/a si...",
+      candYes1:"Tenés manchas o desgaste que el blanqueamiento ya no resuelve.",
+      candYes2:"Buscás corregir dientes chuecos o separados sin cirugía mayor.",
+      candYes3:"Te faltan piezas y querés una solución fija y estable.",
+      candYes4:"Querés resultados en un número acotado de visitas.",
+      candNoTitle:"Charlemos otras opciones si...",
+      candNo1:"Tenés enfermedad de encías activa sin tratar todavía.",
+      candNo2:"El movimiento dental es severo y necesita otro abordaje primero.",
+      candNo3:"Buscás solo la opción más económica, sin priorizar estética.",
+      candNo4:"No podés venir a los controles de seguimiento necesarios.",
+      reviewsEyebrow:"Lo que dicen nuestros pacientes", reviewsTitle:"Reseñas reales de Google",
+      reviewsSub:"<b>4.9/5</b> · 285 reseñas en Google",
+      faqEyebrow:"Preguntas honestas", faqTitle:"Lo que todo paciente se pregunta",
+      faqQ1:"¿Duele el proceso de veneers o alineadores?",
+      faqA1:"La mayoría de los pacientes sienten sensibilidad leve los primeros días, no dolor. Usamos anestesia local cuando el procedimiento lo requiere y te explicamos cada paso antes de empezar.",
+      faqQ2:'¿Se van a ver naturales o "de mentira"?',
+      faqA2:'Diseñamos cada caso según la forma de tu cara y tus dientes reales — la meta es que se note que sonreís más, no que "te hiciste algo".',
+      faqQ3:"¿Cuánto cuesta un smile makeover?",
+      faqA3:"Depende del número de piezas y del tratamiento elegido — por eso el presupuesto se arma después de la consulta, no antes. Consultamos opciones de financiamiento en la primera cita.",
+      faqQ4:"¿Cuánto dura el tratamiento?",
+      faqA4:"Varía según el caso: algunos tratamientos cosméticos se completan en pocas visitas, mientras que alineadores o All-on-X llevan un seguimiento más largo. Te damos un cronograma claro en el plan personalizado.",
+      faqQ5:"¿Atienden emergencias?",
+      faqA5:"Sí. Si tenés dolor agudo o un golpe reciente, llamanos al (305) 677-1612 y te acomodamos con prioridad.",
+      faqQ6:"¿Hablan inglés?",
+      faqA6:"Sí — todo el equipo atiende en español e inglés, así que podés elegir el idioma con el que te sientas más cómodo/a.",
+      bookEyebrow:"Reservá tu lugar", bookTitle:"Agendá tu consulta",
+      bookLede:"Completá el formulario y te confirmamos por teléfono o email.",
+      labelName:"Nombre completo", labelPhone:"Teléfono", labelReason:"Motivo de la consulta",
+      optionSelect:"Seleccioná una opción", option1:"Smile Makeover / Veneers", option2:"Alineadores transparentes",
+      option3:"Implantes / All-on-X", option4:"Chequeo general / limpieza", option5:"Emergencia dental", option6:"Otro",
+      labelDate:"Fecha preferida", btnSubmit:"Solicitar turno",
+      confirmMsg:"¡Gracias! Recibimos tu solicitud — te contactamos al número indicado para confirmar el turno.",
+      locationEyebrow:"Encontranos", locAddressTitle:"Dirección", locPhoneTitle:"Teléfono",
+      locHoursTitle:"Horarios", locHoursP:"Llamanos o escribinos para conocer la disponibilidad actual de turnos.",
+      btnMaps:"Ver en Google Maps",
+      ctaEyebrow:"¿Listo/a para el próximo paso?", ctaTitle:"Tu sonrisa no tiene por qué esperar más.",
+      ctaLede:"Escribinos o llamá directamente — el Dr. Rosado y la Dra. Romano te responden en tu idioma.",
+      ctaBtnBook:"Agendar consulta",
+      footerNavTitle:"Navegación", footerServicesTitle:"Servicios",
+      footerRights:"Todos los derechos reservados.", footerNote:"Sitio de demostración — diseño personalizado",
+      mobileCtaCall:"Llamar", mobileCtaBook:"Agendar"
+    },
+    en:{
+      navDoctors:"Our Doctors", navServices:"Services", navResults:"Smile Results",
+      navReviews:"Reviews", navLocation:"Location", navBook:"Book Appointment",
+      ariaOpenMenu:"Open menu", ariaCloseMenu:"Close menu",
+      heroTitle:'Two dentists, <em>one shared commitment</em> to your smile.',
+      heroLede:"General, cosmetic, and implant dentistry in Miami — with the precision of a team specialized in veneers, clear aligners, and full-arch All-on-X rehabilitation.",
+      heroBtnBook:"Book my consultation", heroBtnCall:"Call (305) 677-1612",
+      heroTrust:'<b>4.9/5</b> on Google · <b>285</b> reviews · Hablamos Español &amp; English',
+      heroFloatTitle:"Close, professional care", heroFloatSub:"We treat patients of all ages",
+      altHero:"Dr. Julio Rosado and Dr. Suset Romano at Romano Smile, Dental Care",
+      altAbout1:"The Romano Smile, Dental Care team",
+      altAbout2:"Dr. Suset Romano treating a patient",
+      altJourney:"Dentist explaining a treatment to their patient",
+      aboutEyebrow:"Meet your dental team",
+      aboutTitle:"Two dentists. One shared standard of care.",
+      aboutP1:"Dr. Julio Rosado and Dr. Suset Romano share a practice and a philosophy: every patient should understand their treatment before it starts. Together they cover everything from general dentistry to advanced cosmetic work — veneers, clear aligners, and full-arch All-on-X rehabilitation.",
+      aboutP2:"One standard, applied by two professionals: honest treatment plans, explained in your language — Spanish or English — without rushing.",
+      pillGeneral:"General Dentistry", pillCosmetic:"Cosmetic &amp; Smile Makeover",
+      pillImplants:"Implants &amp; All-on-X", pillAligners:"Clear Aligners",
+      pillEmergency:"Emergency Care",
+      aboutQuote:'"Every patient should understand their treatment — not just receive it." — Dr. Rosado &amp; Dr. Romano',
+      servicesEyebrow:"What we do", servicesTitle:"One practice, every stage of your smile",
+      servicesLede:"From a routine cleaning to a full rehabilitation — without bouncing you between half a dozen specialists.",
+      serviceFeatureTitle:"Smile Makeover &amp; Veneers",
+      serviceFeatureP:'Dr. Romano\'s signature treatment: a personalized smile design with porcelain veneers, made to look natural — not "off the shelf."',
+      serviceGeneralTitle:"General Dentistry", serviceGeneralP:"Check-ups, cleanings, and prevention for the whole family.",
+      serviceImplantsTitle:"Implants &amp; All-on-X", serviceImplantsP:"Full-arch rehabilitation with fixed, long-lasting results.",
+      serviceAlignersTitle:"Clear Aligners", serviceAlignersP:"Straighten your smile without brackets, at your own pace.",
+      serviceEmergencyTitle:"Dental Emergencies", serviceEmergencyP:"Sudden pain or a dental emergency — we'll fit you in as soon as possible.",
+      transformEyebrow:"Real results", transformTitle:"Drag to see the <em>transformation</em>",
+      transformLede:"That's how honest we are: we show the full process, not just the final result.",
+      baBefore:"Before", baAfter:"After",
+      baNote:"Real patient cases from the practice — photos used for illustrative purposes.",
+      ariaBaSlide:"Drag to compare before and after",
+      journeyEyebrow:"How the process works", journeyTitle:"From your first visit to the result",
+      step1Title:"Consultation &amp; Diagnosis", step1P:"We listen to what you'd like to change and evaluate your baseline dental health.",
+      step2Title:"Personalized Plan", step2P:"We build a clear plan — with options and timelines, no fine print.",
+      step3Title:"Treatment", step3P:"Veneers, aligners, implants, or All-on-X — at your pace, with close follow-up.",
+      step4Title:"Result &amp; Aftercare", step4P:"Follow-up visits so your smile lasts — not just looks good on day one.",
+      candEyebrow:"Before you book", candTitle:"Is this treatment right for you?",
+      candLede:"We'd rather you know before the consultation — no surprises.",
+      candYesTitle:"You may be a good candidate if...",
+      candYes1:"You have staining or wear that whitening no longer fixes.",
+      candYes2:"You want to fix crooked or gapped teeth without major surgery.",
+      candYes3:"You're missing teeth and want a fixed, stable solution.",
+      candYes4:"You want results in a limited number of visits.",
+      candNoTitle:"Let's talk about other options if...",
+      candNo1:"You have active gum disease that hasn't been treated yet.",
+      candNo2:"Your teeth need significant movement that requires another approach first.",
+      candNo3:"You're looking for the cheapest option only, not prioritizing aesthetics.",
+      candNo4:"You can't make the follow-up visits the treatment requires.",
+      reviewsEyebrow:"What our patients say", reviewsTitle:"Real Google reviews",
+      reviewsSub:"<b>4.9/5</b> · 285 reviews on Google",
+      faqEyebrow:"Honest answers", faqTitle:"What every patient wonders",
+      faqQ1:"Does the veneers or aligners process hurt?",
+      faqA1:"Most patients feel mild sensitivity the first few days, not pain. We use local anesthesia when the procedure requires it and explain every step before we start.",
+      faqQ2:'Will they look natural, or "fake"?',
+      faqA2:"We design each case around your face shape and real teeth — the goal is that people notice you smiling more, not that \"you had something done.\"",
+      faqQ3:"How much does a smile makeover cost?",
+      faqA3:"It depends on the number of teeth and the treatment chosen — that's why we build the quote after the consultation, not before. We go over financing options at your first visit.",
+      faqQ4:"How long does treatment take?",
+      faqA4:"It varies by case: some cosmetic treatments finish in just a few visits, while aligners or All-on-X involve longer follow-up. We give you a clear timeline in your personalized plan.",
+      faqQ5:"Do you handle emergencies?",
+      faqA5:"Yes. If you have sudden pain or a recent injury, call us at (305) 677-1612 and we'll fit you in with priority.",
+      faqQ6:"Do you speak English?",
+      faqA6:"Yes — the whole team sees patients in Spanish and English, so you can choose whichever language you're most comfortable in.",
+      bookEyebrow:"Reserve your spot", bookTitle:"Book your consultation",
+      bookLede:"Fill out the form and we'll confirm by phone or email.",
+      labelName:"Full name", labelPhone:"Phone", labelReason:"Reason for visit",
+      optionSelect:"Select an option", option1:"Smile Makeover / Veneers", option2:"Clear Aligners",
+      option3:"Implants / All-on-X", option4:"General check-up / cleaning", option5:"Dental emergency", option6:"Other",
+      labelDate:"Preferred date", btnSubmit:"Request appointment",
+      confirmMsg:"Thank you! We received your request — we'll contact you at the number provided to confirm.",
+      locationEyebrow:"Find us", locAddressTitle:"Address", locPhoneTitle:"Phone",
+      locHoursTitle:"Hours", locHoursP:"Call or message us to check current appointment availability.",
+      btnMaps:"View on Google Maps",
+      ctaEyebrow:"Ready for the next step?", ctaTitle:"Your smile doesn't have to wait any longer.",
+      ctaLede:"Message or call us directly — Dr. Rosado and Dr. Romano will respond in your language.",
+      ctaBtnBook:"Book consultation",
+      footerNavTitle:"Navigation", footerServicesTitle:"Services",
+      footerRights:"All rights reserved.", footerNote:"Demo site — custom design",
+      mobileCtaCall:"Call", mobileCtaBook:"Book"
+    }
+  };
+
+  function applyLang(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var key = el.getAttribute('data-i18n');
+      if(I18N[lang][key] != null){ el.innerHTML = I18N[lang][key]; }
+    });
+    document.querySelectorAll('[data-i18n-attr]').forEach(function(el){
+      var parts = el.getAttribute('data-i18n-attr').split(':');
+      var attr = parts[0], key = parts[1];
+      if(I18N[lang][key] != null){ el.setAttribute(attr, I18N[lang][key]); }
+    });
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try{ localStorage.setItem('romanoSmileLang', lang); }catch(e){}
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang')); });
+  });
+
+  var savedLang = 'es';
+  try{ savedLang = localStorage.getItem('romanoSmileLang') || 'es'; }catch(e){}
+  applyLang(savedLang);
+
+  // header scroll state
+  var header = document.getElementById('siteHeader');
+  function onScroll(){
+    if(window.scrollY > 40){ header.classList.add('scrolled'); }
+    else{ header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // mobile menu
+  var menu = document.getElementById('mobileMenu');
+  var hamburger = document.getElementById('hamburgerBtn');
+  var closeBtn = document.getElementById('mobileCloseBtn');
+  function openMenu(){ menu.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+  function closeMenu(){ menu.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  hamburger.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  // scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, {threshold:.15});
+  revealEls.forEach(function(el){ io.observe(el); });
+
+  // before/after sliders (supports multiple instances)
+  document.querySelectorAll('.ba-wrap').forEach(function(wrap){
+    var after = wrap.querySelector('.ba-after');
+    var handle = wrap.querySelector('.ba-handle');
+    var range = wrap.parentElement.querySelector('.ba-range');
+    function setPos(pct){
+      pct = Math.max(0, Math.min(100, pct));
+      after.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      handle.style.left = pct + '%';
+      range.value = pct;
+    }
+    range.addEventListener('input', function(){ setPos(parseFloat(range.value)); });
+    var dragging = false;
+    function pctFromClientX(clientX){
+      var rect = wrap.getBoundingClientRect();
+      return ((clientX - rect.left) / rect.width) * 100;
+    }
+    wrap.addEventListener('pointerdown', function(e){ dragging = true; setPos(pctFromClientX(e.clientX)); });
+    window.addEventListener('pointermove', function(e){ if(dragging){ setPos(pctFromClientX(e.clientX)); } });
+    window.addEventListener('pointerup', function(){ dragging = false; });
+    setPos(50);
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(other){
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+        other.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if(!isOpen){
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+        q.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // booking form
+  var form = document.getElementById('bookingForm');
+  var confirmBox = document.getElementById('bookConfirm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.checkValidity()){ form.reportValidity(); return; }
+    confirmBox.classList.add('show');
+    form.querySelectorAll('input,select').forEach(function(f){ f.disabled = true; });
+    form.querySelector('button[type="submit"]').disabled = true;
+  });
+
+  // footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
